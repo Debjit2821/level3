@@ -1,7 +1,8 @@
 #![no_std]
 use soroban_sdk::{
-    contract, contractimpl, contracttype, symbol_short, Address, BytesN, Env, Symbol,
+    contract, contractimpl, contracttype, symbol_short, Address, BytesN, Env, Symbol, IntoVal,
 };
+use soroban_sdk::auth::{ContractContext, InvokerContractAuthEntry, SubContractInvocation};
 
 #[contracttype]
 pub enum DataKey {
@@ -42,6 +43,17 @@ impl PayrollTreasury {
 
         // Verify the caller is indeed the registered manager contract
         manager.require_auth();
+
+        // Pre-authorize token transfer from this contract
+        let auth_entry = InvokerContractAuthEntry::Contract(SubContractInvocation {
+            context: ContractContext {
+                contract: token.clone(),
+                fn_name: Symbol::new(&env, "transfer"),
+                args: (env.current_contract_address(), to.clone(), amount).into_val(&env),
+            },
+            sub_invocations: soroban_sdk::vec![&env],
+        });
+        env.authorize_as_current_contract(soroban_sdk::vec![&env, auth_entry]);
 
         let token_client = soroban_sdk::token::Client::new(&env, &token);
         
@@ -91,6 +103,17 @@ impl PayrollTreasury {
             .expect("Not initialized");
         admin.require_auth();
         assert!(amount > 0, "Amount must be positive");
+
+        // Pre-authorize token transfer from this contract
+        let auth_entry = InvokerContractAuthEntry::Contract(SubContractInvocation {
+            context: ContractContext {
+                contract: token.clone(),
+                fn_name: Symbol::new(&env, "transfer"),
+                args: (env.current_contract_address(), to.clone(), amount).into_val(&env),
+            },
+            sub_invocations: soroban_sdk::vec![&env],
+        });
+        env.authorize_as_current_contract(soroban_sdk::vec![&env, auth_entry]);
 
         let token_client = soroban_sdk::token::Client::new(&env, &token);
         token_client.transfer(&env.current_contract_address(), &to, &amount);

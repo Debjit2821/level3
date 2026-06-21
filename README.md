@@ -105,6 +105,11 @@ sequenceDiagram
 - **Smart Contracts**: [Soroban SDK v26](https://soroban.stellar.org/)
 - **Wallet Connection**: [@creit.tech/stellar-wallets-kit](https://github.com/CreitTech/stellar-wallets-kit)
 
+## Contract Explorer
+
+- **Stellar Expert (Payroll Manager Contract)**: https://stellar.expert/explorer/testnet/contract/CBBAYELR73ZFT2WLSD2AG2MSZXLT3ADBRHQSRJY3HARKSCF5PBNYAAYN
+- **Stellar Expert (Payroll Treasury Contract)**: https://stellar.expert/explorer/testnet/contract/CDMJGW3GLJXEBMYW7LPITW22LGMVAO7ZE2QISI7MIJCGFNGVV42N7B4B
+
 ---
 
 # Environment Variables
@@ -112,8 +117,8 @@ sequenceDiagram
 Create a `.env.local` file in the root directory:
 
 ```env
-NEXT_PUBLIC_MANAGER_CONTRACT_ID=CCWJ6RKEXU3E2HYH7FRLFZWBL5TUYQMJQOFCCBCX4JZIM53WIAJXNO2A
-NEXT_PUBLIC_TREASURY_CONTRACT_ID=CBK5FEDSCE6HUD6266HOXMO57CEC7WUNDMD2ISJ4WJLY7LEEUKVWLE7I
+NEXT_PUBLIC_MANAGER_CONTRACT_ID=CBBAYELR73ZFT2WLSD2AG2MSZXLT3ADBRHQSRJY3HARKSCF5PBNYAAYN
+NEXT_PUBLIC_TREASURY_CONTRACT_ID=CDMJGW3GLJXEBMYW7LPITW22LGMVAO7ZE2QISI7MIJCGFNGVV42N7B4B
 NEXT_PUBLIC_TOKEN_CONTRACT_ID=CACUJUEJWSNL544KHIGNSVBPRR33ZY3RGMRQHIMAK3VBFSTDPLYAC3T7
 NEXT_PUBLIC_STELLAR_NETWORK=testnet
 NEXT_PUBLIC_SOROBAN_RPC_URL=https://soroban-testnet.stellar.org
@@ -190,16 +195,13 @@ The deployment script is located in `scripts/deploy.js`. It automates building, 
 # Project Deployments
 
 ### Contract Addresses
-- **Payroll Manager Contract ID**: `CCWJ6RKEXU3E2HYH7FRLFZWBL5TUYQMJQOFCCBCX4JZIM53WIAJXNO2A`
-- **Payroll Treasury Contract ID**: `CBK5FEDSCE6HUD6266HOXMO57CEC7WUNDMD2ISJ4WJLY7LEEUKVWLE7I`
+- **Payroll Manager Contract ID**: `CBBAYELR73ZFT2WLSD2AG2MSZXLT3ADBRHQSRJY3HARKSCF5PBNYAAYN`
+- **Payroll Treasury Contract ID**: `CDMJGW3GLJXEBMYW7LPITW22LGMVAO7ZE2QISI7MIJCGFNGVV42N7B4B`
 - **XLM SAC Token Address**: `CACUJUEJWSNL544KHIGNSVBPRR33ZY3RGMRQHIMAK3VBFSTDPLYAC3T7`
 
 ### Transaction Hash
-- **Treasury Init Transaction**: `9f07d9503db2ee4f11366057062156377348717ab44efd52ac7132396a7d04d0`
-- **Manager Init Transaction**: `724d72c471e198089ce3aabb9fa0394454340f7082ae43306b64ee3737f792b7`
-
-### Demo Video
-- **Demo Video Walkthrough**: [DEMO_VIDEO_LINK_PLACEHOLDER](https://stellar.org)
+- **Treasury Init Transaction**: `f1efdc3ec01572ef31de82e99ce579cc81895e3b047c9a90fb97e3b264492d82`
+- **Manager Init Transaction**: `ba036a888f70a9f094c1a310c8921b4b15279679ba37e444ac0315141b6d15b3`
 
 ### Live Demo
 - **Vercel Production Site**: https://level3-rosy.vercel.app
