@@ -28,8 +28,10 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
         with:
           targets: wasm32-unknown-unknown
-        name: Install Soroban Target
-        run: rustup target add wasm32v1-none
+          
+      - name: Install Soroban Target
+        run: |
+          rustup target add wasm32v1-none
 
       - name: Install Stellar CLI
         run: |
@@ -62,4 +64,4 @@ jobs:
           NEXT_PUBLIC_TREASURY_CONTRACT_ID: ${{ secrets.NEXT_PUBLIC_TREASURY_CONTRACT_ID }}
           NEXT_PUBLIC_TOKEN_CONTRACT_ID: "CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC"
           NEXT_PUBLIC_STELLAR_NETWORK: "testnet"
-          NEXT_PUBLIC_SOROBAN_RPC_URL: "https://soroban-testnet.stellar.org"give me the actual code
+          NEXT_PUBLIC_SOROBAN_RPC_URL: "https://soroban-testnet.stellar.org"
