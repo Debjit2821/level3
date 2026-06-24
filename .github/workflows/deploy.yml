@@ -2,9 +2,7 @@ name: Deployment Workflow
 
 on:
   push:
-    branches:
-      - main
-      - master
+    branches: [ main, master ]
 
 jobs:
   deploy:
@@ -18,9 +16,9 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y \
-            build-essential \
             pkg-config \
             libdbus-1-dev \
+            build-essential \
             libudev-dev \
             libssl-dev \
             clang \
@@ -32,10 +30,12 @@ jobs:
           targets: wasm32-unknown-unknown
 
       - name: Install Stellar CLI
-        run: cargo install --locked stellar-cli
+        run: |
+          cargo install --locked stellar-cli
 
       - name: Build Contracts
-        run: stellar contract build
+        run: |
+          stellar contract build
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -44,7 +44,8 @@ jobs:
           cache: npm
 
       - name: Install Dependencies
-        run: npm ci --ignore-scripts
+        run: |
+          npm ci --ignore-scripts
 
       - name: Run Tests
         run: |
@@ -52,10 +53,11 @@ jobs:
           cargo test
 
       - name: Build Production Web App
-        run: npm run build
+        run: |
+          npm run build
         env:
           NEXT_PUBLIC_MANAGER_CONTRACT_ID: ${{ secrets.NEXT_PUBLIC_MANAGER_CONTRACT_ID }}
           NEXT_PUBLIC_TREASURY_CONTRACT_ID: ${{ secrets.NEXT_PUBLIC_TREASURY_CONTRACT_ID }}
           NEXT_PUBLIC_TOKEN_CONTRACT_ID: "CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC"
           NEXT_PUBLIC_STELLAR_NETWORK: "testnet"
-          NEXT_PUBLIC_SOROBAN_RPC_URL: "https://soroban-testnet.stellar.org"
+          NEXT_PUBLIC_SOROBAN_RPC_URL: "https://soroban-testnet.stellar.org"give me the actual code
