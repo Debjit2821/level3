@@ -1,63 +1,61 @@
 name: Deployment Workflow
 
 on:
-push:
-branches:
-- main
-- master
+  push:
+    branches:
+      - main
+      - master
 
 jobs:
-deploy:
-name: Build & Verify Production Bundle
-runs-on: ubuntu-latest
+  deploy:
+    name: Build & Verify Production Bundle
+    runs-on: ubuntu-latest
 
-```
-steps:
-  - uses: actions/checkout@v4
+    steps:
+      - uses: actions/checkout@v4
 
-  - name: Install Linux Dependencies
-    run: |
-      sudo apt-get update
-      sudo apt-get install -y \
-        build-essential \
-        pkg-config \
-        libdbus-1-dev \
-        libudev-dev \
-        libssl-dev \
-        clang \
-        cmake
+      - name: Install Linux Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential \
+            pkg-config \
+            libdbus-1-dev \
+            libudev-dev \
+            libssl-dev \
+            clang \
+            cmake
 
-  - name: Install Rust toolchain
-    uses: dtolnay/rust-toolchain@stable
-    with:
-      targets: wasm32-unknown-unknown
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
 
-  - name: Install Stellar CLI
-    run: cargo install --locked stellar-cli
+      - name: Install Stellar CLI
+        run: cargo install --locked stellar-cli
 
-  - name: Build Contracts
-    run: stellar contract build
+      - name: Build Contracts
+        run: stellar contract build
 
-  - name: Set up Node.js
-    uses: actions/setup-node@v4
-    with:
-      node-version: 20
-      cache: npm
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
 
-  - name: Install Dependencies
-    run: npm ci --ignore-scripts
+      - name: Install Dependencies
+        run: npm ci --ignore-scripts
 
-  - name: Run Tests
-    run: |
-      npm run test
-      cargo test
+      - name: Run Tests
+        run: |
+          npm run test
+          cargo test
 
-  - name: Build Production Web App
-    run: npm run build
-    env:
-      NEXT_PUBLIC_MANAGER_CONTRACT_ID: ${{ secrets.NEXT_PUBLIC_MANAGER_CONTRACT_ID }}
-      NEXT_PUBLIC_TREASURY_CONTRACT_ID: ${{ secrets.NEXT_PUBLIC_TREASURY_CONTRACT_ID }}
-      NEXT_PUBLIC_TOKEN_CONTRACT_ID: "CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC"
-      NEXT_PUBLIC_STELLAR_NETWORK: "testnet"
-      NEXT_PUBLIC_SOROBAN_RPC_URL: "https://soroban-testnet.stellar.org"
-```
+      - name: Build Production Web App
+        run: npm run build
+        env:
+          NEXT_PUBLIC_MANAGER_CONTRACT_ID: ${{ secrets.NEXT_PUBLIC_MANAGER_CONTRACT_ID }}
+          NEXT_PUBLIC_TREASURY_CONTRACT_ID: ${{ secrets.NEXT_PUBLIC_TREASURY_CONTRACT_ID }}
+          NEXT_PUBLIC_TOKEN_CONTRACT_ID: "CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC"
+          NEXT_PUBLIC_STELLAR_NETWORK: "testnet"
+          NEXT_PUBLIC_SOROBAN_RPC_URL: "https://soroban-testnet.stellar.org"
