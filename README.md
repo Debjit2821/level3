@@ -8,7 +8,7 @@ This DApp enables organizations to register employees, allocate working capital 
 
 ## 🔗 Project Links
 
-* **GitHub Repository**: [Debjit2821/level3](https://github.com/Debjit2821/level3)
+* **GitHub Repository**: [Debjit2821/Stellar-pay_V2](https://github.com/Debjit2821/Stellar-pay_V2)
 * **Live Demo**: [StellarPay Production App](https://level3-rosy.vercel.app/)
 * **Demo Video**: [DEMO](https://youtu.be/6w7dN0blc9I)
 * **Local Walkthrough**: [View the website walkthrough](public/demo/demo-video.webm)
@@ -219,8 +219,8 @@ Follow this step-by-step test scenario to experience the DApp's core payroll lif
 
 ### 1. Install Dependencies
 ```bash
-git clone https://github.com/Debjit2821/level3.git
-cd level3
+git clone https://github.com/Debjit2821/Stellar-pay_V2.git
+cd Stellar-pay_V2
 npm install --ignore-scripts
 ```
 
