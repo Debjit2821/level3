@@ -2,7 +2,7 @@ name: PR Verification
 
 on:
   pull_request:
-    branches: [ main, master ]
+    branches: [ main, master, 'fix/**' ]
 
 jobs:
   verify-rust:

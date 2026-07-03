@@ -10,7 +10,8 @@ This DApp enables organizations to register employees, allocate working capital 
 
 * **GitHub Repository**: [Debjit2821/level3](https://github.com/Debjit2821/level3)
 * **Live Demo**: [StellarPay Production App](https://level3-rosy.vercel.app/)
-* **Demo Video**:[DEMO](https://youtu.be/6w7dN0blc9I)
+* **Demo Video**: [DEMO](https://youtu.be/6w7dN0blc9I)
+* **Local Walkthrough**: [View the website walkthrough](public/demo/demo-video.webm)
 
 ---
 
@@ -41,6 +42,10 @@ This DApp enables organizations to register employees, allocate working capital 
 ### 7.Test Output :
  *Test output with 3+ passing tests*
  ![test output](public/screenshots/Screenshot%202026-06-24%20154016.png)
+
+### 6. CI/CD Pipeline Verification
+*Build and deployment workflow verified with GitHub Actions; runs on `main`, `master`, and `fix/**` branches and includes contract compilation, frontend lint/test, and production bundle creation.*
+![CI/CD Pipeline](public/screenshots/ci_cd_pipeline.png)
 
 ---
 
