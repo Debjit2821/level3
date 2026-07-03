@@ -30,7 +30,7 @@ This DApp enables organizations to register employees, allocate working capital 
 
 ### 4. Mobile Responsive UI
 *Fully responsive interface optimized for mobile layout (stackable grids, responsive forms, and sidebar navigation).*
-![Mobile Responsive UI](public/screenshots/mobile.png)
+![Mobile Responsive UI](public/screenshots/mobile1.png)
 
 
 ### 5. Wallet Options
